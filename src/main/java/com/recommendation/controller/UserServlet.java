@@ -1,5 +1,7 @@
 package com.recommendation.controller;
 
+import com.recommendation.service.UserService;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +13,13 @@ import java.io.IOException;
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 
+    private UserService userService;
+
+    @Override
+    public void init() {
+        userService = new UserService();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request,
                           HttpServletResponse response)
@@ -18,7 +27,19 @@ public class UserServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        response.getWriter().println("<h1>User Module</h1>");
-        response.getWriter().println("<p>User Servlet is working!</p>");
+        String userIdParameter = request.getParameter("userId");
+
+        if (userIdParameter == null || userIdParameter.isEmpty()) {
+            response.getWriter().println("<h2>Please provide User ID</h2>");
+            return;
+        }
+
+        int userId = Integer.parseInt(userIdParameter);
+
+        String result = userService.getUserDetails(userId);
+
+        response.getWriter().println("<h1>AI Recommendation System</h1>");
+        response.getWriter().println("<h2>User</h2>");
+        response.getWriter().println("<p>" + result + "</p>");
     }
 }
