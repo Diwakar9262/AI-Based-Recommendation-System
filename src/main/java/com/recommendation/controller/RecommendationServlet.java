@@ -12,12 +12,14 @@ import java.io.IOException;
 public class RecommendationServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+                          HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html");
 
         response.getWriter().println("<h1>AI Recommendation System</h1>");
-        response.getWriter().println("<p>Recommendation Servlet is working!</p>");
+        response.getWriter().println("<h2>Recommendation Module</h2>");
+        response.getWriter().println("<p>Recommendation request received successfully.</p>");
     }
 }
