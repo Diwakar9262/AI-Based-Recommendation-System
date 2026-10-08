@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Recommend | Smart Recommendation System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<section id="authPage" class="auth-page">
+  <div class="auth-brand">AI <span>Recommend</span></div>
+  <div class="auth-shell">
+    <div class="auth-intro">
+      <p class="eyebrow">JAVA PROJECT</p>
+      <h1>Smart recommendations, personalized for you.</h1>
+      <p>Register your account, select your interests and get recommendations based on preferences, ratings and popularity.</p>
+      <div class="feature-list">
+        <div>✓ Personalized recommendations</div>
+        <div>✓ Preference-based scoring</div>
+        <div>✓ Admin analytics dashboard</div>
+        <div>✓ Simple Java Spring Boot backend</div>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <div class="tabs">
+        <button id="loginTab" class="tab active" onclick="switchAuth('login')">Login</button>
+        <button id="registerTab" class="tab" onclick="switchAuth('register')">Register</button>
+      </div>
+
+      <form id="loginForm" onsubmit="login(event)">
+        <h2>Welcome back</h2>
+        <p class="small">Login to see your personalized recommendations.</p>
+        <label>Email<input id="loginEmail" type="email" placeholder="you@example.com" required></label>
+        <label>Password<input id="loginPassword" type="password" placeholder="Enter password" required></label>
+        <button class="primary full" type="submit">Login</button>
+        <button class="link-button" type="button" onclick="showAdminHint()">Admin login</button>
+      </form>
+
+      <form id="registerForm" class="hidden" onsubmit="register(event)">
+        <h2>Create account</h2>
+        <p class="small">Create your account and tell us what you like.</p>
+        <label>Full Name<input id="regName" type="text" placeholder="Your name" required></label>
+        <label>Email<input id="regEmail" type="email" placeholder="you@example.com" required></label>
+        <label>Password<input id="regPassword" type="password" minlength="6" placeholder="Minimum 6 characters" required></label>
+        <label>Confirm Password<input id="regConfirm" type="password" minlength="6" placeholder="Re-enter password" required></label>
+        <label>Interests <span class="optional">(optional)</span><input id="regPreferences" type="text" placeholder="java, ai, data, web"></label>
+        <button class="primary full" type="submit">Create Account</button>
+      </form>
+      <p id="authMessage" class="message"></p>
+    </div>
+  </div>
+  <p class="demo-note">Demo admin: <b>admin@airecommend.com</b> / <b>Admin@123</b></p>
+</section>
+
+<header id="appHeader" class="hidden">
+  <div class="brand">AI Recommend</div>
+  <nav>
+    <button onclick="showPage('userPage')">User Dashboard</button>
+    <button id="adminNav" class="hidden" onclick="showPage('adminPage')">Admin</button>
+    <button class="logout" onclick="logout()">Logout</button>
+  </nav>
+</header>
+
+<main id="appMain" class="hidden">
+<section id="userPage" class="page">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">PERSONALIZED DASHBOARD</p>
+      <h1 id="welcomeTitle">Welcome!</h1>
+      <p>Get content suggestions based on your interests, ratings and popularity.</p>
+    </div>
+  </div>
+
+  <div class="panel profile-panel">
+    <div><span class="small">Logged in as</span><h2 id="profileName">User</h2><p id="profileEmail" class="small"></p></div>
+    <div class="profile-stat"><span>Preferences</span><b id="preferenceCount">0</b></div>
+  </div>
+
+  <div class="panel">
+    <h2>Preference Management</h2>
+    <p class="small">Enter topics separated by commas.</p>
+    <input id="preferences" placeholder="java, programming, technology">
+    <button class="primary" onclick="savePreferences()">Save Preferences</button>
+    <span id="saveMessage" class="success"></span>
+  </div>
+
+  <div class="panel">
+    <div class="section-title"><div><h2>Recommended for You</h2><p class="small">Your results update when preferences change.</p></div><button onclick="loadRecommendations()">Refresh</button></div>
+    <div id="recommendations" class="cards"></div>
+  </div>
+</section>
+
+<section id="adminPage" class="page hidden">
+  <div class="hero">
+    <div><p class="eyebrow">ADMIN DASHBOARD</p><h1>Recommendation Analytics</h1><p>Manage algorithm weights and view system statistics.</p></div>
+  </div>
+  <div id="stats" class="stats"></div>
+  <div class="panel">
+    <h2>System Settings</h2><p class="small">The three weights control how recommendation scores are calculated.</p>
+    <div class="form-grid">
+      <label>Preference Weight<input id="preferenceWeight" type="number" min="0" max="100"></label>
+      <label>Rating Weight<input id="ratingWeight" type="number" min="0" max="100"></label>
+      <label>Popularity Weight<input id="popularityWeight" type="number" min="0" max="100"></label>
+    </div>
+    <button class="primary" onclick="saveSettings()">Update Settings</button><span id="settingsMessage" class="success"></span>
+  </div>
+  <div class="panel"><h2>Available Content</h2><div id="items" class="cards"></div></div>
+</section>
+</main>
+<footer id="appFooter" class="hidden">AI-based Recommendation System • Java Project</footer>
+<script src="app.js"></script>
+</body>
+</html>

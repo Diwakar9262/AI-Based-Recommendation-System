@@ -1,0 +1,2 @@
+Demo data is initialized in InMemoryRepository.java.
+No database is required to run the project.

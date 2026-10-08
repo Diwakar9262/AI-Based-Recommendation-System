@@ -1,0 +1,8 @@
+PROJECT MODULES
+1. User Dashboard
+2. Preference Management
+3. Personalized Recommendation Engine
+4. Admin Dashboard
+5. System Settings Management
+6. Recommendation Statistics
+7. Content/Item Listing
